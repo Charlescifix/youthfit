@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - All Bookings | YouthFit Pro</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: #f8fafc;
+            color: #2d3748;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .admin-badge {
+            background: linear-gradient(135deg, #e53e3e, #c53030);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-left: 1rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .home-link {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .home-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem 0;
+            min-height: calc(100vh - 100px);
+        }
+
+        .dashboard-header {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e2e8f0;
+        }
+
+        .dashboard-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .dashboard-title h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #2d3748;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #f0f7ff, #e6f3ff);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #667eea;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #4a5568;
+            font-weight: 600;
+        }
+
+        /* Search and Filters */
+        .controls-section {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e2e8f0;
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            align-items: end;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .control-group label {
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .control-group input,
+        .control-group select {
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .control-group input:focus,
+        .control-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1.5rem;
+        }
+
+        .search-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Bookings Table */
+        .bookings-section {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .table-header h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .table-subtitle {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .bookings-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .bookings-table th {
+            background: #f8fafc;
+            color: #4a5568;
+            font-weight: 700;
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 2px solid #e2e8f0;
+            white-space: nowrap;
+        }
+
+        .bookings-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+        }
+
+        .bookings-table tbody tr {
+            transition: all 0.2s ease;
+        }
+
+        .bookings-table tbody tr:hover {
+            background: #f8fafc;
+            transform: scale(1.01);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .booking-id {
+            font-weight: 700;
+            color: #667eea;
+            font-family: 'Monaco', 'Menlo', monospace;
+        }
+
+        .customer-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .customer-name {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .customer-email {
+            font-size: 0.8rem;
+            color: #718096;
+        }
+
+        .service-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .service-fitness { background: linear-gradient(135deg, #fed7d7, #fbb6ce); color: #822727; }
+        .service-chess { background: linear-gradient(135deg, #d6f5d6, #c6f6d5); color: #22543d; }
+        .service-coding { background: linear-gradient(135deg, #dbeafe, #bfdbfe); color: #1e3a8a; }
+        .service-nutrition { background: linear-gradient(135deg, #fef3c7, #fde68a); color: #92400e; }
+        .service-family { background: linear-gradient(135deg, #e0e7ff, #c7d2fe); color: #3730a3; }
+        .service-group { background: linear-gradient(135deg, #f3e8ff, #e9d5ff); color: #6b21a8; }
+
+        .date-info {
+            font-weight: 500;
+            color: #4a5568;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-confirmed {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            color: #065f46;
+        }
+
+        .status-pending {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            color: #92400e;
+        }
+
+        .status-cancelled {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            color: #991b1b;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-confirm {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+        }
+
+        .btn-cancel {
+            background: linear-gradient(135deg, #e53e3e, #c53030);
+            color: white;
+        }
+
+        .btn-edit {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #718096;
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .pagination {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .pagination-btn {
+            padding: 8px 16px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .pagination-btn:hover:not(.disabled) {
+            background: #667eea;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .pagination-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination-info {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .container { padding: 0 15px; }
+            .dashboard-title { flex-direction: column; align-items: stretch; }
+            .dashboard-title h1 { font-size: 1.8rem; }
+            .controls-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+            .bookings-table {
+                font-size: 0.8rem;
+            }
+
+            .bookings-table th,
+            .bookings-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .nav-actions {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .dashboard-header { padding: 1.5rem; }
+            .controls-section { padding: 1rem; }
+        }
+
+        /* Animation */
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div style="display: flex; align-items: center;">
+                <div class="logo">YouthFit Pro 🚀</div>
+                <div class="admin-badge">Admin Panel</div>
+            </div>
+            <div class="nav-actions">
+                <a href="/" class="home-link">← Return to Home</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Dashboard Header -->
+            <div class="dashboard-header fade-in">
+                <div class="dashboard-title">
+                    <h1>📊 Bookings Dashboard</h1>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number" id="total-bookings">{{ bookings|length }}</span>
+                        <span class="stat-label">Total Bookings</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="confirmed-bookings">
+                            {% set confirmed_count = bookings|selectattr('confirmed', 'equalto', True)|list|length %}
+                            {{ confirmed_count }}
+                        </span>
+                        <span class="stat-label">Confirmed</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="pending-bookings">
+                            {% set pending_count = bookings|selectattr('confirmed', 'equalto', False)|list|length %}
+                            {{ pending_count }}
+                        </span>
+                        <span class="stat-label">Pending</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="today-bookings">0</span>
+                        <span class="stat-label">Today</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search and Filters -->
+            <div class="controls-section fade-in">
+                <div class="controls-grid">
+                    <div class="control-group">
+                        <label for="search">Search Customer</label>
+                        <input type="text" id="search" placeholder="Search by name or email..." onkeyup="filterTable()">
+                    </div>
+                    <div class="control-group">
+                        <label for="service-filter">Filter by Service</label>
+                        <select id="service-filter" onchange="filterTable()">
+                            <option value="">All Services</option>
+                            <option value="fitness">Fitness Development</option>
+                            <option value="chess">Chess Strategy</option>
+                            <option value="coding">AI Coding Club</option>
+                            <option value="nutrition">Nutrition Planning</option>
+                            <option value="family">Family Sessions</option>
+                            <option value="group">Group Training</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="status-filter">Filter by Status</label>
+                        <select id="status-filter" onchange="filterTable()">
+                            <option value="">All Statuses</option>
+                            <option value="true">Confirmed</option>
+                            <option value="false">Pending</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <button class="search-button" onclick="clearFilters()">Clear Filters</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bookings Table -->
+            <div class="bookings-section fade-in">
+                <div class="table-header">
+                    <h2>All Bookings</h2>
+                    <div class="table-subtitle">Manage and track all recreational development session bookings</div>
+                </div>
+
+                <div class="table-container">
+                    <table class="bookings-table" id="bookingsTable">
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Customer</th>
+                                <th>Service</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for booking in bookings %}
+                            <tr data-service="{{ booking.service }}" data-status="{{ booking.confirmed }}" data-customer="{{ booking.full_name|lower }} {{ booking.email|lower }}">
+                                <td>
+                                    <span class="booking-id">#{{ booking.id }}</span>
+                                </td>
+                                <td>
+                                    <div class="customer-info">
+                                        <span class="customer-name">{{ booking.full_name }}</span>
+                                        <span class="customer-email">{{ booking.email }}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="service-badge service-{{ booking.service }}">
+                                        {% if booking.service == 'fitness' %}
+                                            🏋️ Fitness Development
+                                        {% elif booking.service == 'chess' %}
+                                            ♟️ Chess Strategy
+                                        {% elif booking.service == 'coding' %}
+                                            🤖 AI Coding Club
+                                        {% elif booking.service == 'nutrition' %}
+                                            🥗 Nutrition Planning
+                                        {% elif booking.service == 'family' %}
+                                            👨‍👩‍👧‍👦 Family Sessions
+                                        {% elif booking.service == 'group' %}
+                                            👥 Group Training
+                                        {% else %}
+                                            {{ booking.service }}
+                                        {% endif %}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="date-info">{{ booking.date.strftime('%d %b %Y') if booking.date else 'Not scheduled' }}</span>
+                                </td>
+                                <td>
+                                    <span class="status-badge status-{{ 'confirmed' if booking.confirmed else 'pending' }}">
+                                        {{ 'Confirmed' if booking.confirmed else 'Pending' }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        {% if not booking.confirmed %}
+                                            <button class="btn btn-confirm" onclick="confirmBooking({{ booking.id }})">
+                                                Confirm
+                                            </button>
+                                        {% endif %}
+                                        <button class="btn btn-edit" onclick="editBooking({{ booking.id }})">
+                                            Edit
+                                        </button>
+                                        <button class="btn btn-cancel" onclick="cancelBooking({{ booking.id }})">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="6">
+                                    <div class="empty-state">
+                                        <div class="empty-state-icon">📅</div>
+                                        <h3>No bookings found</h3>
+                                        <p>When customers book sessions, they'll appear here.</p>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                {% if bookings %}
+                <div class="pagination">
+                    <button class="pagination-btn" onclick="previousPage()">« Previous</button>
+                    <span class="pagination-info">Showing {{ bookings|length }} bookings</span>
+                    <button class="pagination-btn" onclick="nextPage()">Next »</button>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+
+    <script src="/static/js/script.js"></script>
+    <script>
+        // Search and filter functionality
+        function filterTable() {
+            const searchInput = document.getElementById('search').value.toLowerCase();
+            const serviceFilter = document.getElementById('service-filter').value;
+            const statusFilter = document.getElementById('status-filter').value;
+            const table = document.getElementById('bookingsTable');
+            const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+            for (let i = 0; i < rows.length; i++) {
+                const row = rows[i];
+                const customerData = row.getAttribute('data-customer') || '';
+                const service = row.getAttribute('data-service') || '';
+                const status = row.getAttribute('data-status') || '';
+
+                let showRow = true;
+
+                // Search filter
+                if (searchInput && !customerData.includes(searchInput)) {
+                    showRow = false;
+                }
+
+                // Service filter
+                if (serviceFilter && service !== serviceFilter) {
+                    showRow = false;
+                }
+
+                // Status filter
+                if (statusFilter && status !== statusFilter) {
+                    showRow = false;
+                }
+
+                row.style.display = showRow ? '' : 'none';
+            }
+        }
+
+        function clearFilters() {
+            document.getElementById('search').value = '';
+            document.getElementById('service-filter').value = '';
+            document.getElementById('status-filter').value = '';
+            filterTable();
+        }
+
+        // Admin action functions
+        function confirmBooking(bookingId) {
+            if (confirm('Confirm this booking?')) {
+                // In a real implementation, this would make an API call
+                alert(`Booking #${bookingId} confirmed! (API call would be made here)`);
+                location.reload(); // Refresh to show updated status
+            }
+        }
+
+        function editBooking(bookingId) {
+            // In a real implementation, this would open an edit modal or navigate to edit page
+            alert(`Edit booking #${bookingId} (Edit functionality would be implemented here)`);
+        }
+
+        function cancelBooking(bookingId) {
+            if (confirm('Are you sure you want to cancel this booking? This action cannot be undone.')) {
+                // In a real implementation, this would make an API call
+                alert(`Booking #${bookingId} cancelled! (API call would be made here)`);
+                location.reload(); // Refresh to show updated status
+            }
+        }
+
+        // Pagination (basic implementation)
+        let currentPage = 1;
+
+        function previousPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                // In a real implementation, this would reload data for the previous page
+                console.log('Loading page', currentPage);
+            }
+        }
+
+        function nextPage() {
+            currentPage++;
+            // In a real implementation, this would reload data for the next page
+            console.log('Loading page', currentPage);
+        }
+
+        // Auto-refresh every 30 seconds (optional)
+        // setInterval(() => {
+        //     location.reload();
+        // }, 30000);
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'f') {
+                e.preventDefault();
+                document.getElementById('search').focus();
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add any initialization code here
+            console.log('Admin dashboard loaded');
+        });
+    </script>
+</body>
+</html>

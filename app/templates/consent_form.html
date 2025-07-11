@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consent & Agreement Form - YouthFit Pro</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: #ffffff;
+            color: #2d3748;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .back-link {
+            background: linear-gradient(135deg, #e2e8f0, #cbd5e0);
+            color: #4a5568;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: linear-gradient(135deg, #cbd5e0, #a0aec0);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 4rem 0;
+            min-height: calc(100vh - 100px);
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+
+        .consent-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .consent-header h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .consent-header p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: slideUp 0.6s ease-out 0.2s both;
+        }
+
+        .consent-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out 0.4s both;
+        }
+
+        .form-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        .form-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .security-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+
+        .consent-content {
+            padding: 3rem 2.5rem;
+        }
+
+        .important-notice {
+            background: linear-gradient(135deg, #fff5f5, #fed7d7);
+            border-left: 5px solid #e53e3e;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2.5rem;
+        }
+
+        .important-notice h3 {
+            color: #c53030;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .important-notice p {
+            color: #742a2a;
+            font-weight: 500;
+            line-height: 1.7;
+            margin-bottom: 0.8rem;
+        }
+
+        .consent-details {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            border: 2px solid #e2e8f0;
+        }
+
+        .consent-details h3 {
+            color: #2d3748;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .consent-section {
+            margin-bottom: 2rem;
+        }
+
+        .consent-section h4 {
+            color: #4a5568;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .consent-section ul {
+            list-style: none;
+            margin-left: 1rem;
+        }
+
+        .consent-section li {
+            color: #4a5568;
+            margin-bottom: 0.6rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .consent-section li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: white;
+            color: #2d3748;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #a0aec0;
+            font-weight: 400;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.6;
+        }
+
+        .checkbox-group {
+            background: #f0f7ff;
+            border: 2px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+
+        .checkbox-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin-right: 1rem;
+            margin-top: 0.2rem;
+            transform: scale(1.2);
+            accent-color: #667eea;
+        }
+
+        .checkbox-item label {
+            margin-bottom: 0;
+            cursor: pointer;
+            line-height: 1.6;
+            color: #2d3748;
+            font-weight: 500;
+        }
+
+        .required {
+            color: #e53e3e;
+        }
+
+        .submit-section {
+            background: linear-gradient(135deg, #f0fff4, #e6fffa);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid #9ae6b4;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(72, 187, 120, 0.3);
+            margin-top: 1rem;
+            min-width: 200px;
+        }
+
+        .submit-button:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(72, 187, 120, 0.4);
+            background: linear-gradient(135deg, #38a169, #2f855a);
+        }
+
+        .submit-button:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .submit-note {
+            color: #2f855a;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        .data-protection {
+            background: #fefcbf;
+            border-left: 4px solid #f6e05e;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .data-protection h4 {
+            color: #744210;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .data-protection p {
+            color: #744210;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .consent-header h1 { font-size: 2.2rem; }
+            .consent-container { margin: 0 15px; }
+            .consent-content { padding: 2rem 1.5rem; }
+            .form-header { padding: 2rem 1.5rem; }
+            .container { padding: 0 15px; }
+        }
+
+        @media (max-width: 480px) {
+            .consent-header h1 { font-size: 1.8rem; }
+            .consent-content { padding: 1.5rem 1rem; }
+            .form-header { padding: 1.5rem 1rem; }
+            .important-notice { padding: 1rem; }
+            .consent-details { padding: 1.5rem; }
+        }
+
+        /* Loading state */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .loading .submit-button {
+            background: #a0aec0;
+            cursor: not-allowed;
+        }
+
+        /* Progress indicator */
+        .form-progress {
+            width: 100%;
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .form-progress-bar {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">YouthFit Pro 🚀</div>
+            <a href="/" class="back-link">← Back to Home</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="consent-header">
+                <h1>Consent & Agreement Form</h1>
+                <p>Please read carefully and provide your consent for recreational development activities</p>
+            </div>
+
+            <div class="consent-container">
+                <div class="form-header">
+                    <h2>Participant Consent</h2>
+                    <p>Safe, recreational development programs for young people</p>
+                    <div class="security-badge">🔒 Secure & Confidential</div>
+                </div>
+
+                <div class="consent-content">
+                    <div class="form-progress">
+                        <div class="form-progress-bar" id="progressBar"></div>
+                    </div>
+
+                    <div class="important-notice">
+                        <h3>🛡️ Important Safety Notice</h3>
+                        <p><strong>All activities are recreational and educational in nature.</strong> We do not provide professional sports coaching or competitive training. Our programs focus on personal development, fitness education, and life skills building.</p>
+                        <p>All facilitators are Enhanced DBS checked and trained in youth recreational development.</p>
+                    </div>
+
+                    <div class="consent-details">
+                        <h3>📋 What You're Consenting To</h3>
+
+                        <div class="consent-section">
+                            <h4>Recreational Activities Include:</h4>
+                            <ul>
+                                <li>Age-appropriate fitness and movement activities</li>
+                                <li>Chess education and strategy development</li>
+                                <li>Basic coding and technology introduction</li>
+                                <li>Nutrition awareness and healthy lifestyle education</li>
+                                <li>Family wellness activities and group sessions</li>
+                            </ul>
+                        </div>
+
+                        <div class="consent-section">
+                            <h4>Safety & Supervision:</h4>
+                            <ul>
+                                <li>All activities supervised by Enhanced DBS checked staff</li>
+                                <li>Age-appropriate equipment and environment</li>
+                                <li>Clear safety protocols and emergency procedures</li>
+                                <li>Regular progress monitoring and family communication</li>
+                                <li>Immediate contact with parents/guardians if needed</li>
+                            </ul>
+                        </div>
+
+                        <div class="consent-section">
+                            <h4>Data & Communication:</h4>
+                            <ul>
+                                <li>Progress photos/videos for development tracking (with consent)</li>
+                                <li>Regular updates on participant progress</li>
+                                <li>Emergency contact information securely stored</li>
+                                <li>GDPR compliant data protection measures</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <form action="/consent" method="post" id="consentForm">
+                        <div class="form-group">
+                            <label for="full_name">Full Name (Parent/Guardian) <span class="required">*</span></label>
+                            <input
+                                type="text"
+                                id="full_name"
+                                name="full_name"
+                                required
+                                placeholder="Enter your full name"
+                                autocomplete="name"
+                                onkeyup="updateProgress()"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                required
+                                placeholder="your.email@example.com"
+                                autocomplete="email"
+                                onkeyup="updateProgress()"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="consent_text">Additional Information & Specific Consent Details</label>
+                            <textarea
+                                id="consent_text"
+                                name="consent_text"
+                                placeholder="Please provide any additional information about your child (age, specific needs, medical conditions, emergency contacts, etc.) and confirm your understanding of the recreational nature of our programs..."
+                                rows="6"
+                                onkeyup="updateProgress()"
+                            ></textarea>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="consent1" required onchange="updateProgress()">
+                                <label for="consent1">
+                                    <strong>I understand and consent</strong> to my child participating in recreational development activities as described above. I acknowledge these are educational and recreational activities, not professional sports coaching.
+                                </label>
+                            </div>
+
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="consent2" required onchange="updateProgress()">
+                                <label for="consent2">
+                                    <strong>I confirm</strong> that I am the parent/legal guardian of the participant and have the authority to provide this consent.
+                                </label>
+                            </div>
+
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="consent3" required onchange="updateProgress()">
+                                <label for="consent3">
+                                    <strong>Emergency Contact:</strong> I authorize YouthFit Pro to contact me immediately in case of any concerns or emergencies during activities.
+                                </label>
+                            </div>
+
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="consent4" onchange="updateProgress()">
+                                <label for="consent4">
+                                    <strong>Progress Documentation:</strong> I consent to progress photos/videos being taken for educational and development tracking purposes (optional).
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="data-protection">
+                            <h4>🔐 Data Protection Notice</h4>
+                            <p>Your information will be stored securely and used only for providing recreational development services. We comply with GDPR regulations and will never share your data with third parties without explicit consent. You can request data deletion at any time.</p>
+                        </div>
+
+                        <div class="submit-section">
+                            <button type="submit" class="submit-button" id="submitBtn" disabled>
+                                Submit Consent Form 📝
+                            </button>
+                            <div class="submit-note">
+                                Once submitted, we'll contact you within 24 hours to schedule your child's first session
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/static/js/script.js"></script>
+    <script>
+        // Form validation and progress tracking
+        function updateProgress() {
+            const form = document.getElementById('consentForm');
+            const requiredFields = form.querySelectorAll('input[required], textarea[required]');
+            const requiredCheckboxes = form.querySelectorAll('input[type="checkbox"][required]');
+            const progressBar = document.getElementById('progressBar');
+            const submitBtn = document.getElementById('submitBtn');
+
+            let filledFields = 0;
+            let totalRequired = requiredFields.length + requiredCheckboxes.length;
+
+            // Check text inputs
+            requiredFields.forEach(field => {
+                if (field.value.trim() !== '') {
+                    filledFields++;
+                }
+            });
+
+            // Check required checkboxes
+            requiredCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    filledFields++;
+                }
+            });
+
+            // Update progress bar
+            const progress = (filledFields / totalRequired) * 100;
+            progressBar.style.width = progress + '%';
+
+            // Enable/disable submit button
+            submitBtn.disabled = progress < 100;
+
+            if (progress === 100) {
+                submitBtn.textContent = 'Submit Consent Form ✅';
+            } else {
+                submitBtn.textContent = 'Complete Required Fields 📝';
+            }
+        }
+
+        // Form submission handling
+        document.getElementById('consentForm').addEventListener('submit', function(e) {
+            const form = e.target;
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Add loading state
+            form.classList.add('loading');
+            submitBtn.textContent = 'Processing Consent... ⏳';
+            submitBtn.disabled = true;
+        });
+
+        // Enhanced input validation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Email validation
+            const emailInput = document.getElementById('email');
+            emailInput.addEventListener('blur', function(e) {
+                const email = e.target.value;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (email && !emailRegex.test(email)) {
+                    e.target.style.borderColor = '#e53e3e';
+                    e.target.style.boxShadow = '0 0 0 3px rgba(229, 62, 62, 0.1)';
+                } else {
+                    e.target.style.borderColor = '#e2e8f0';
+                    e.target.style.boxShadow = 'none';
+                }
+            });
+
+            // Name validation
+            const nameInput = document.getElementById('full_name');
+            nameInput.addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/[^a-zA-Z\s]/g, '');
+            });
+
+            // Character counter for textarea
+            const textArea = document.getElementById('consent_text');
+            textArea.addEventListener('input', function(e) {
+                const maxLength = 1000;
+                const currentLength = e.target.value.length;
+
+                if (currentLength > maxLength) {
+                    e.target.value = e.target.value.substring(0, maxLength);
+                }
+            });
+        });
+
+        // Smooth scroll to form sections
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Auto-save form data (optional)
+        function saveFormData() {
+            const formData = {
+                full_name: document.getElementById('full_name').value,
+                email: document.getElementById('email').value,
+                consent_text: document.getElementById('consent_text').value
+            };
+            localStorage.setItem('consentFormData', JSON.stringify(formData));
+        }
+
+        // Load saved form data (optional)
+        function loadFormData() {
+            const savedData = localStorage.getItem('consentFormData');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                document.getElementById('full_name').value = data.full_name || '';
+                document.getElementById('email').value = data.email || '';
+                document.getElementById('consent_text').value = data.consent_text || '';
+                updateProgress();
+            }
+        }
+
+        // Initialize form
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+            // loadFormData(); // Uncomment if you want auto-save functionality
+        });
+
+        // Save data on input (optional)
+        // document.addEventListener('input', saveFormData);
+    </script>
+</body>
+</html>

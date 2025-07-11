@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed - YouthFit Pro</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2d3748;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .home-link {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+        }
+
+        .home-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(72, 187, 120, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 4rem 0;
+            min-height: calc(100vh - 100px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .confirmation-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            animation: celebrateIn 0.8s ease-out;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .confirmation-header {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .confirmation-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: sparkle 3s ease-in-out infinite;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+            animation: bounce 1s ease-in-out infinite alternate;
+            position: relative;
+            z-index: 1;
+        }
+
+        .confirmation-header h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .confirmation-header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        .confirmation-content {
+            padding: 3rem 2.5rem;
+        }
+
+        .booking-details {
+            background: linear-gradient(135deg, #f0f7ff, #e6f3ff);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            border-left: 5px solid #667eea;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booking-details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(50%, -50%);
+        }
+
+        .booking-details h2 {
+            color: #2d3748;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .detail-value {
+            font-weight: 700;
+            color: #2d3748;
+            font-size: 1.1rem;
+        }
+
+        .next-steps {
+            background: #fff8e1;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            border-left: 5px solid #f59e0b;
+        }
+
+        .next-steps h3 {
+            color: #92400e;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .next-steps ul {
+            list-style: none;
+        }
+
+        .next-steps li {
+            color: #92400e;
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .next-steps li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        .contact-info {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+        }
+
+        .contact-info h3 {
+            color: #2d3748;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item {
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            color: #4a5568;
+        }
+
+        .contact-item strong {
+            color: #2d3748;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            box-shadow: 0 8px 25px rgba(72, 187, 120, 0.3);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(72, 187, 120, 0.4);
+        }
+
+        /* Animations */
+        @keyframes celebrateIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(50px);
+            }
+            50% {
+                transform: scale(1.05) translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: rotate(0deg) scale(1); opacity: 0.3; }
+            50% { transform: rotate(180deg) scale(1.2); opacity: 0.7; }
+        }
+
+        /* Confetti Animation */
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #667eea;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        .confetti-piece:nth-child(odd) {
+            background: #48bb78;
+            animation-delay: -0.5s;
+        }
+
+        .confetti-piece:nth-child(even) {
+            background: #f59e0b;
+            animation-delay: -1s;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .confirmation-header h1 { font-size: 2rem; }
+            .confirmation-content { padding: 2rem 1.5rem; }
+            .confirmation-header { padding: 2rem 1.5rem; }
+            .container { padding: 0 15px; }
+            .action-buttons { flex-direction: column; align-items: center; }
+            .btn { min-width: 200px; }
+        }
+
+        @media (max-width: 480px) {
+            .confirmation-header h1 { font-size: 1.8rem; }
+            .success-icon { font-size: 3rem; }
+            .confirmation-content { padding: 1.5rem 1rem; }
+            .confirmation-header { padding: 1.5rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti">
+        <!-- Confetti pieces will be generated by JavaScript -->
+    </div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">YouthFit Pro 🚀</div>
+            <a href="/" class="home-link">← Back to Home</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="confirmation-container">
+                <div class="confirmation-header">
+                    <span class="success-icon">🎉</span>
+                    <h1>Booking Confirmed!</h1>
+                    <p>Your development journey starts here</p>
+                </div>
+
+                <div class="confirmation-content">
+                    <div class="booking-details">
+                        <h2>📋 Your Booking Details</h2>
+                        <div class="detail-item">
+                            <span class="detail-label">Name:</span>
+                            <span class="detail-value" id="customer-name">{{ full_name }}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Service Selected:</span>
+                            <span class="detail-value" id="selected-service">
+                                {% if service == 'fitness' %}
+                                    🏋️ Private Youth Fitness & Recreational Development
+                                {% elif service == 'chess' %}
+                                    ♟️ Chess for Focus & Strategy
+                                {% elif service == 'coding' %}
+                                    🤖 AI Coding Club
+                                {% elif service == 'nutrition' %}
+                                    🥗 Nutrition & Meal Planning
+                                {% elif service == 'family' %}
+                                    👨‍👩‍👧‍👦 Family Fitness Sessions
+                                {% elif service == 'group' %}
+                                    👥 Small Group Training Sessions
+                                {% else %}
+                                    {{ service }}
+                                {% endif %}
+                            </span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Booking Reference:</span>
+                            <span class="detail-value" id="booking-reference">#YF{{ full_name[:3]|upper }}{{ range(100, 999)|random }}</span>
+                        </div>
+                    </div>
+
+                    <div class="next-steps">
+                        <h3>📞 What Happens Next?</h3>
+                        <ul>
+                            <li><strong>Within 24 hours:</strong> We'll contact you to discuss your child's needs and schedule the perfect time slot</li>
+                            <li><strong>Session Planning:</strong> We'll create a personalized development plan based on your child's age and interests</li>
+                            <li><strong>Preparation:</strong> You'll receive all the information needed to prepare for the first session</li>
+                            <li><strong>Ongoing Support:</strong> Regular progress updates and family communication throughout the program</li>
+                        </ul>
+                    </div>
+
+                    <div class="contact-info">
+                        <h3>📧 Contact Information</h3>
+                        <div class="contact-item">
+                            <strong>Phone:</strong> +44 (0) 20 1234 5678
+                        </div>
+                        <div class="contact-item">
+                            <strong>Email:</strong> hello@youthfitpro.co.uk
+                        </div>
+                        <div class="contact-item">
+                            <strong>Response Time:</strong> Within 24 hours
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <a href="/" class="btn btn-primary">Return to Homepage</a>
+                        <a href="/book" class="btn btn-secondary">Book Another Session</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/static/js/script.js"></script>
+    <script>
+        // Generate confetti animation
+        function createConfetti() {
+            const confettiContainer = document.querySelector('.confetti');
+            const colors = ['#667eea', '#48bb78', '#f59e0b', '#e53e3e', '#9f7aea'];
+
+            for (let i = 0; i < 50; i++) {
+                const confettiPiece = document.createElement('div');
+                confettiPiece.className = 'confetti-piece';
+                confettiPiece.style.left = Math.random() * 100 + '%';
+                confettiPiece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confettiPiece.style.animationDelay = Math.random() * 3 + 's';
+                confettiPiece.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confettiContainer.appendChild(confettiPiece);
+            }
+
+            // Remove confetti after animation
+            setTimeout(() => {
+                confettiContainer.innerHTML = '';
+            }, 5000);
+        }
+
+        // Celebration effect on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            createConfetti();
+
+            // Add success sound effect (optional)
+            const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmEWBSyE3fPfijEIGGK66ql5JAxSpuzyvWUWBSmA2vLkkTkIGGG05qeJLAsKaNzyy3opByvC7NqLOxAgY7PoqYMjByCU4vO2UxcKQpzq8cB9IQcYf9jzkTkYaL3rqWElBGOZzvLaezY3aqXIo4MFgLeELoULQaU=');
+            // audio.play().catch(() => {}); // Uncomment if you want sound
+        });
+
+        // Enhanced booking reference generation
+        function generateBookingRef() {
+            const name = "{{ full_name }}";
+            const prefix = name.substring(0, 3).toUpperCase();
+            const random = Math.floor(Math.random() * 900) + 100;
+            return `#YF${prefix}${random}`;
+        }
+
+        // Smooth scroll to top on page load
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Copy booking reference to clipboard
+        function copyBookingRef() {
+            const ref = document.querySelector('.detail-value:last-child').textContent;
+            navigator.clipboard.writeText(ref).then(() => {
+                alert('Booking reference copied to clipboard!');
+            }).catch(() => {
+                console.log('Could not copy booking reference');
+            });
+        }
+
+        // Add click event to booking reference for copying
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookingRef = document.querySelector('.detail-item:last-child .detail-value');
+            if (bookingRef) {
+                bookingRef.style.cursor = 'pointer';
+                bookingRef.title = 'Click to copy';
+                bookingRef.addEventListener('click', copyBookingRef);
+            }
+        });
+    </script>
+</body>
+</html>

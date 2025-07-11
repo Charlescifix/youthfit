@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Session - YouthFit Pro</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: #ffffff;
+            color: #2d3748;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .back-link {
+            background: linear-gradient(135deg, #e2e8f0, #cbd5e0);
+            color: #4a5568;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: linear-gradient(135deg, #cbd5e0, #a0aec0);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 4rem 0;
+            min-height: calc(100vh - 100px);
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+
+        .booking-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .booking-header h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .booking-header p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: slideUp 0.6s ease-out 0.2s both;
+        }
+
+        .booking-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out 0.4s both;
+        }
+
+        .form-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .form-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .booking-form {
+            padding: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: white;
+            color: #2d3748;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #a0aec0;
+            font-weight: 400;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.6;
+        }
+
+        .service-option {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .service-option:hover {
+            border-color: #667eea;
+            background: #f0f7ff;
+            transform: translateY(-2px);
+        }
+
+        .service-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .service-option.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #f0f7ff, #e6f3ff);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .service-title {
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-price {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        .service-description {
+            font-size: 0.9rem;
+            color: #4a5568;
+            margin-top: 0.5rem;
+        }
+
+        .consent-info {
+            background: linear-gradient(135deg, #fff5f5, #fed7d7);
+            border-left: 4px solid #e53e3e;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .consent-info p {
+            color: #c53030;
+            font-weight: 600;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .consent-note {
+            background: #f0f7ff;
+            border-left: 3px solid #4299e1;
+            padding: 0.8rem;
+            border-radius: 6px;
+            margin-top: 0.5rem;
+        }
+
+        .consent-note small {
+            color: #2b6cb0;
+            font-weight: 500;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            padding: 18px 0;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(72, 187, 120, 0.3);
+            margin-top: 1rem;
+        }
+
+        .submit-button:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(72, 187, 120, 0.4);
+            background: linear-gradient(135deg, #38a169, #2f855a);
+        }
+
+        .submit-button:active {
+            transform: translateY(-1px);
+        }
+
+        .submit-button:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .form-note {
+            background: #e6fffa;
+            border-left: 4px solid #38b2ac;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: #285e61;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .booking-header h1 { font-size: 2.2rem; }
+            .booking-container { margin: 0 15px; }
+            .booking-form { padding: 2rem; }
+            .container { padding: 0 15px; }
+        }
+
+        @media (max-width: 480px) {
+            .booking-header h1 { font-size: 1.8rem; }
+            .booking-form { padding: 1.5rem; }
+            .form-header { padding: 1.5rem; }
+        }
+
+        /* Loading state */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .loading .submit-button {
+            background: #a0aec0;
+            cursor: not-allowed;
+        }
+
+        .required {
+            color: #e53e3e;
+        }
+
+        /* Character counter */
+        .char-counter {
+            text-align: right;
+            font-size: 0.8rem;
+            color: #718096;
+            margin-top: 0.5rem;
+        }
+
+        .char-counter.warning {
+            color: #f6ad55;
+        }
+
+        .char-counter.danger {
+            color: #e53e3e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">YouthFit Pro 🚀</div>
+            <a href="/" class="back-link">← Back to Home</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="booking-header">
+                <h1>Book Your Development Session</h1>
+                <p>Take the first step towards your child's recreational development journey</p>
+            </div>
+
+            <div class="booking-container">
+                <div class="form-header">
+                    <h2>Session Booking</h2>
+                    <p>Fill out the details below and we'll get back to you within 24 hours</p>
+                </div>
+
+                <form class="booking-form" method="POST" action="/book" id="bookingForm">
+                    <div class="form-note">
+                        <strong>📞 Note:</strong> After submitting this form, we'll contact you within 24 hours to arrange the perfect time slot and answer any questions you may have.
+                    </div>
+
+                    <div class="form-group">
+                        <label for="full_name">Full Name <span class="required">*</span></label>
+                        <input
+                            type="text"
+                            id="full_name"
+                            name="full_name"
+                            required
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                            placeholder="your.email@example.com"
+                            autocomplete="email"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="required">*</span></label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            required
+                            placeholder="+44 7123 456789"
+                            autocomplete="tel"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Choose Your Service <span class="required">*</span></label>
+
+                        <div class="service-option" onclick="selectService('fitness')">
+                            <input type="radio" name="service" value="fitness" id="service_fitness" required>
+                            <div class="service-title">
+                                🏋️ Private Youth Fitness & Recreational Development
+                            </div>
+                            <div class="service-price">£30/session or £160 for 6 sessions</div>
+                            <div class="service-description">1-hour recreational fitness activities focused on personal development and movement education</div>
+                        </div>
+
+                        <div class="service-option" onclick="selectService('chess')">
+                            <input type="radio" name="service" value="chess" id="service_chess" required>
+                            <div class="service-title">
+                                ♟️ Chess for Focus & Strategy
+                            </div>
+                            <div class="service-price">£20/session</div>
+                            <div class="service-description">45-minute chess education sessions for ages 6-13, developing strategic thinking and concentration</div>
+                        </div>
+
+                        <div class="service-option" onclick="selectService('coding')">
+                            <input type="radio" name="service" value="coding" id="service_coding" required>
+                            <div class="service-title">
+                                🤖 AI Coding Club
+                            </div>
+                            <div class="service-price">£30/session or £160 for 6 sessions</div>
+                            <div class="service-description">1-hour sessions introducing coding foundations and basic AI concepts through creative challenges</div>
+                        </div>
+
+                        <div class="service-option" onclick="selectService('nutrition')">
+                            <input type="radio" name="service" value="nutrition" id="service_nutrition" required>
+                            <div class="service-title">
+                                🥗 Nutrition & Meal Planning
+                            </div>
+                            <div class="service-price">£20/week or £70/month</div>
+                            <div class="service-description">Weekly meal plans, healthy shopping guides, and monthly virtual check-ins</div>
+                        </div>
+
+                        <div class="service-option" onclick="selectService('family')">
+                            <input type="radio" name="service" value="family" id="service_family" required>
+                            <div class="service-title">
+                                👨‍👩‍👧‍👦 Family Fitness Sessions
+                            </div>
+                            <div class="service-price">£45 per session</div>
+                            <div class="service-description">1-hour family workout with fun, movement-based games suitable for all fitness levels</div>
+                        </div>
+
+                        <div class="service-option" onclick="selectService('group')">
+                            <input type="radio" name="service" value="group" id="service_group" required>
+                            <div class="service-title">
+                                👥 Small Group Training Sessions
+                            </div>
+                            <div class="service-price">£15 per child per session</div>
+                            <div class="service-description">Fun team-based activities for up to 5 kids, building social skills and motivation</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="consent_text">Consent & Agreement <span class="required">*</span></label>
+                        <div class="consent-info">
+                            <p><strong>📋 Please review and confirm your consent for recreational development activities:</strong></p>
+                        </div>
+                        <textarea
+                            id="consent_text"
+                            name="consent_text"
+                            required
+                            rows="8"
+                        >I consent to the participation of my child in recreational development activities provided by YouthFit Pro. I understand and acknowledge that:
+
+• These are recreational and educational activities, not professional sports coaching
+• All facilitators are Enhanced DBS checked and trained in youth development
+• Activities include fitness education, chess strategy, basic coding, and nutrition awareness
+• My child's safety and development are the primary focus
+• I authorize emergency contact if needed during activities
+• I understand the recreational nature of all programs offered
+
+I agree to the terms and conditions and confirm I have the authority as parent/guardian to provide this consent.</textarea>
+                        <div id="charCounter" class="char-counter">0/2000 characters</div>
+                        <div class="consent-note">
+                            <small>💡 You can modify this text to add any specific information about your child (age, medical conditions, emergency contacts, etc.)</small>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-button" id="submitBtn">
+                        Book My Session 🚀
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="/static/js/script.js"></script>
+    <script>
+        function selectService(serviceType) {
+            // Remove selected class from all options
+            document.querySelectorAll('.service-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+
+            // Add selected class to clicked option
+            event.currentTarget.classList.add('selected');
+
+            // Check the radio button
+            document.getElementById('service_' + serviceType).checked = true;
+        }
+
+        // Form submission handling
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            const form = e.target;
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Check if consent text is filled
+            const consentText = document.getElementById('consent_text').value.trim();
+            if (consentText.length < 50) {
+                e.preventDefault();
+                alert('Please complete the consent section with adequate detail (minimum 50 characters).');
+                document.getElementById('consent_text').focus();
+                return;
+            }
+
+            // Add loading state
+            form.classList.add('loading');
+            submitBtn.textContent = 'Processing... ⏳';
+            submitBtn.disabled = true;
+        });
+
+        // Input validation and enhancement
+        document.addEventListener('DOMContentLoaded', function() {
+            // Phone number formatting
+            const phoneInput = document.getElementById('phone');
+            phoneInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.startsWith('44')) {
+                    value = '+' + value.substring(0, 2) + ' ' + value.substring(2);
+                } else if (value.startsWith('0')) {
+                    value = '+44 ' + value.substring(1);
+                }
+                e.target.value = value;
+            });
+
+            // Email validation
+            const emailInput = document.getElementById('email');
+            emailInput.addEventListener('blur', function(e) {
+                const email = e.target.value;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (email && !emailRegex.test(email)) {
+                    e.target.style.borderColor = '#e53e3e';
+                } else {
+                    e.target.style.borderColor = '#e2e8f0';
+                }
+            });
+
+            // Name validation
+            const nameInput = document.getElementById('full_name');
+            nameInput.addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/[^a-zA-Z\s]/g, '');
+            });
+
+            // Character counter and validation for consent textarea
+            const consentTextArea = document.getElementById('consent_text');
+            const charCounter = document.getElementById('charCounter');
+            const maxLength = 2000;
+
+            function updateCharCounter() {
+                const currentLength = consentTextArea.value.length;
+                charCounter.textContent = `${currentLength}/${maxLength} characters`;
+
+                // Remove all classes first
+                charCounter.classList.remove('warning', 'danger');
+
+                if (currentLength > maxLength * 0.9) {
+                    charCounter.classList.add('danger');
+                } else if (currentLength > maxLength * 0.7) {
+                    charCounter.classList.add('warning');
+                }
+            }
+
+            consentTextArea.addEventListener('input', function(e) {
+                if (e.target.value.length > maxLength) {
+                    e.target.value = e.target.value.substring(0, maxLength);
+                }
+                updateCharCounter();
+            });
+
+            // Initial character count
+            updateCharCounter();
+        });
+    </script>
+</body>
+</html>

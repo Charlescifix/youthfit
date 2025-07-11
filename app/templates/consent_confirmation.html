@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consent Received - YouthFit Pro</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2d3748;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .home-link {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+        }
+
+        .home-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(72, 187, 120, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 4rem 0;
+            min-height: calc(100vh - 100px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .confirmation-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            animation: celebrateIn 0.8s ease-out;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .confirmation-header {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .confirmation-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: sparkle 3s ease-in-out infinite;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+            animation: bounce 1s ease-in-out infinite alternate;
+            position: relative;
+            z-index: 1;
+        }
+
+        .confirmation-header h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .confirmation-header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        .confirmation-content {
+            padding: 3rem 2.5rem;
+        }
+
+        .consent-details {
+            background: linear-gradient(135deg, #f0f7ff, #e6f3ff);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            border-left: 5px solid #667eea;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .consent-details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(50%, -50%);
+        }
+
+        .consent-details h2 {
+            color: #2d3748;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .detail-value {
+            font-weight: 700;
+            color: #2d3748;
+            font-size: 1.1rem;
+        }
+
+        .security-assurance {
+            background: #f0fff4;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            border-left: 5px solid #48bb78;
+            text-align: center;
+        }
+
+        .security-assurance h3 {
+            color: #2f855a;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .security-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .security-feature {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .security-feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .security-feature h4 {
+            color: #2f855a;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .security-feature p {
+            color: #2f855a;
+            font-size: 0.8rem;
+        }
+
+        .next-steps {
+            background: #fff8e1;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            border-left: 5px solid #f59e0b;
+        }
+
+        .next-steps h3 {
+            color: #92400e;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .next-steps ul {
+            list-style: none;
+        }
+
+        .next-steps li {
+            color: #92400e;
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .next-steps li::before {
+            content: "📋";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        .reference-info {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+        }
+
+        .reference-info h3 {
+            color: #2d3748;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .reference-number {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-family: 'Monaco', 'Menlo', monospace;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .reference-number:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .contact-info {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+        }
+
+        .contact-info h3 {
+            color: #2d3748;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item {
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            color: #4a5568;
+        }
+
+        .contact-item strong {
+            color: #2d3748;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            box-shadow: 0 8px 25px rgba(72, 187, 120, 0.3);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(72, 187, 120, 0.4);
+        }
+
+        /* Animations */
+        @keyframes celebrateIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(50px);
+            }
+            50% {
+                transform: scale(1.05) translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: rotate(0deg) scale(1); opacity: 0.3; }
+            50% { transform: rotate(180deg) scale(1.2); opacity: 0.7; }
+        }
+
+        /* Confetti Animation */
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #48bb78;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        .confetti-piece:nth-child(odd) {
+            background: #667eea;
+            animation-delay: -0.5s;
+        }
+
+        .confetti-piece:nth-child(even) {
+            background: #f59e0b;
+            animation-delay: -1s;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .confirmation-header h1 { font-size: 2rem; }
+            .confirmation-content { padding: 2rem 1.5rem; }
+            .confirmation-header { padding: 2rem 1.5rem; }
+            .container { padding: 0 15px; }
+            .action-buttons { flex-direction: column; align-items: center; }
+            .btn { min-width: 200px; }
+            .security-features { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .confirmation-header h1 { font-size: 1.8rem; }
+            .success-icon { font-size: 3rem; }
+            .confirmation-content { padding: 1.5rem 1rem; }
+            .confirmation-header { padding: 1.5rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti">
+        <!-- Confetti pieces will be generated by JavaScript -->
+    </div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">YouthFit Pro 🚀</div>
+            <a href="/" class="home-link">← Back to Home</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="confirmation-container">
+                <div class="confirmation-header">
+                    <span class="success-icon">✅</span>
+                    <h1>Consent Received!</h1>
+                    <p>Thank you for trusting us with your child's development</p>
+                </div>
+
+                <div class="confirmation-content">
+                    <div class="consent-details">
+                        <h2>🛡️ Your Consent Details</h2>
+                        <div class="detail-item">
+                            <span class="detail-label">Parent/Guardian:</span>
+                            <span class="detail-value">{{ full_name }}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Consent Type:</span>
+                            <span class="detail-value">Recreational Development Activities</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Status:</span>
+                            <span class="detail-value" style="color: #48bb78;">✓ Confirmed & Recorded</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Date Received:</span>
+                            <span class="detail-value">{{ current_date }}</span>
+                        </div>
+                    </div>
+
+                    <div class="reference-info">
+                        <h3>📋 Consent Reference Number</h3>
+                        <div class="reference-number" onclick="copyReference()" title="Click to copy">
+                            #CF{{ full_name[:3]|upper }}{{ range(1000, 9999)|random }}
+                        </div>
+                        <p style="color: #718096; font-size: 0.9rem;">Click to copy • Keep this for your records</p>
+                    </div>
+
+                    <div class="security-assurance">
+                        <h3>🔒 Your Information is Secure</h3>
+                        <p style="color: #2f855a; margin-bottom: 1rem;">Your consent and personal information are protected by our comprehensive security measures</p>
+
+                        <div class="security-features">
+                            <div class="security-feature">
+                                <span class="security-feature-icon">🛡️</span>
+                                <h4>Enhanced DBS</h4>
+                                <p>All staff certified</p>
+                            </div>
+                            <div class="security-feature">
+                                <span class="security-feature-icon">🔐</span>
+                                <h4>GDPR Compliant</h4>
+                                <p>Data protection assured</p>
+                            </div>
+                            <div class="security-feature">
+                                <span class="security-feature-icon">📋</span>
+                                <h4>Secure Storage</h4>
+                                <p>Encrypted & confidential</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="next-steps">
+                        <h3>📞 What Happens Next?</h3>
+                        <ul>
+                            <li><strong>Confirmation Email:</strong> You'll receive a confirmation email within 30 minutes with your consent details</li>
+                            <li><strong>Schedule Session:</strong> If you haven't already, book your child's first recreational development session</li>
+                            <li><strong>Preparation Guide:</strong> We'll send you a preparation guide with everything you need to know</li>
+                            <li><strong>Ongoing Communication:</strong> Regular updates on your child's progress and development</li>
+                            <li><strong>Support Available:</strong> Our team is always available for questions or concerns</li>
+                        </ul>
+                    </div>
+
+                    <div class="contact-info">
+                        <h3>📧 Need Assistance?</h3>
+                        <div class="contact-item">
+                            <strong>Phone:</strong> +44 (0) 20 1234 5678
+                        </div>
+                        <div class="contact-item">
+                            <strong>Email:</strong> hello@youthfitpro.co.uk
+                        </div>
+                        <div class="contact-item">
+                            <strong>Response Time:</strong> Within 4 hours during business hours
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <a href="/" class="btn btn-primary">Return to Homepage</a>
+                        <a href="/book" class="btn btn-secondary">Book a Session</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/static/js/script.js"></script>
+    <script>
+        // Generate confetti animation
+        function createConfetti() {
+            const confettiContainer = document.querySelector('.confetti');
+            const colors = ['#48bb78', '#667eea', '#f59e0b', '#e53e3e', '#9f7aea'];
+
+            for (let i = 0; i < 40; i++) {
+                const confettiPiece = document.createElement('div');
+                confettiPiece.className = 'confetti-piece';
+                confettiPiece.style.left = Math.random() * 100 + '%';
+                confettiPiece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confettiPiece.style.animationDelay = Math.random() * 3 + 's';
+                confettiPiece.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confettiContainer.appendChild(confettiPiece);
+            }
+
+            // Remove confetti after animation
+            setTimeout(() => {
+                confettiContainer.innerHTML = '';
+            }, 5000);
+        }
+
+        // Copy reference number to clipboard
+        function copyReference() {
+            const referenceElement = document.querySelector('.reference-number');
+            const referenceText = referenceElement.textContent;
+
+            navigator.clipboard.writeText(referenceText).then(() => {
+                // Visual feedback
+                const originalText = referenceElement.textContent;
+                referenceElement.textContent = 'Copied! ✓';
+                referenceElement.style.background = 'linear-gradient(135deg, #48bb78, #38a169)';
+
+                setTimeout(() => {
+                    referenceElement.textContent = originalText;
+                    referenceElement.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+                }, 2000);
+            }).catch(() => {
+                // Fallback for browsers that don't support clipboard API
+                alert('Reference number: ' + referenceText);
+            });
+        }
+
+        // Celebration effect on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            createConfetti();
+
+            // Add success sound effect (optional)
+            // const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmEWBSyE3fPfijEIGGK66ql5JAxSpuzyvWUWBSmA2vLkkTkIGGG05qeJLAsKaNzyy3opByvC7NqLOxAgY7PoqYMjByCU4vO2UxcKQpzq8cB9IQcYf9jzkTkYaL3rqWElBGOZzvLaezY3aqXIo4MFgLeELoULQaU=');
+            // audio.play().catch(() => {}); // Uncomment if you want sound
+        });
+
+        // Smooth scroll to top on page load
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Auto-redirect after 60 seconds (optional)
+        // setTimeout(() => {
+        //     window.location.href = '/';
+        // }, 60000);
+
+        // Track page view (for analytics)
+        console.log('Consent confirmation page loaded for:', '{{ full_name }}');
+    </script>
+</body>
+</html>

@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouthFit Pro - Transform Your Child's Future</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: #ffffff;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: #4a5568;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 0 4rem;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 40%;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            transform: rotate(15deg);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(15deg); }
+            50% { transform: translateY(-20px) rotate(15deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            color: #2d3748;
+            line-height: 1.1;
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: #4a5568;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            animation: slideUp 1s ease-out 0.2s both;
+        }
+
+        .hero .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            animation: slideUp 1s ease-out 0.4s both;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #667eea;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #718096;
+            font-weight: 600;
+        }
+
+        .summer-program-details {
+            margin: 2rem 0;
+            animation: slideUp 1s ease-out 0.4s both;
+        }
+
+        .program-highlight {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border: 2px solid #667eea;
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .program-highlight h3 {
+            color: #2d3748;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .program-highlight > p {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #667eea;
+            margin-bottom: 1.5rem;
+        }
+
+        .program-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .program-features li {
+            color: #2d3748;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .program-pricing {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .program-pricing p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: slideUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 0;
+            background: #ffffff;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #718096;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid #f7fafc;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border-color: #e2e8f0;
+        }
+
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .service-title {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .age-group {
+            background: linear-gradient(135deg, #4299e1, #3182ce);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .book-button {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 6px 20px rgba(72, 187, 120, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .book-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(72, 187, 120, 0.4);
+            background: linear-gradient(135deg, #38a169, #2f855a);
+        }
+
+        .service-content {
+            margin-bottom: 2rem;
+        }
+
+        .service-card ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card li {
+            color: #4a5568;
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .service-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: 700;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #667eea;
+            background: linear-gradient(135deg, #edf2f7, #e2e8f0);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .benefits {
+            background: linear-gradient(135deg, #f0fff4, #e6fffa);
+            border-left: 4px solid #48bb78;
+            padding: 1.2rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .benefits h4 {
+            color: #2f855a;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .benefits ul {
+            margin: 0;
+        }
+
+        .benefits li {
+            color: #2f855a;
+            font-weight: 500;
+        }
+
+        /* Enhanced Details Sections */
+        .service-details {
+            background: #f8fafc;
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+
+        .service-details h5 {
+            color: #2d3748;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+
+        /* Our Approach Section */
+        .approach {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .approach-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .approach-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .approach-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .approach-stat {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .approach-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .approach-quote {
+            font-style: italic;
+            color: #4a5568;
+            font-size: 0.95rem;
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+            margin-top: 1rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            padding: 1.5rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d3748;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #667eea;
+        }
+
+        .faq-answer {
+            padding: 0 0 1.5rem 0;
+            color: #4a5568;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-icon.active {
+            transform: rotate(45deg);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+
+        .difference-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .difference-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .about-content {
+            animation: slideUp 1s ease-out 0.2s both;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #e2e8f0;
+        }
+
+        .footer-section p, .footer-section li {
+            color: #a0aec0;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #a0aec0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #4a5568;
+            color: #a0aec0;
+        }
+
+        /* Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3); }
+            50% { box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5); }
+            100% { box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3); }
+        }
+
+        .chatbot-toggle:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem;
+            font-weight: 600;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background: #f8fafc;
+        }
+
+        .chatbot-input {
+            padding: 1rem;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 10px;
+            background: white;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .chatbot-input input:focus {
+            border-color: #667eea;
+        }
+
+        .chatbot-input button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 18px;
+            max-width: 85%;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background: #667eea;
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+
+        .ai-message {
+            background: white;
+            color: #2d3748;
+            border: 1px solid #e2e8f0;
+            border-bottom-left-radius: 4px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu { display: flex; }
+
+            .hero h1 { font-size: 2.2rem; }
+            .program-highlight { padding: 2rem; }
+            .program-features li { font-size: 0.9rem; }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .service-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .approach-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; }
+
+            .chatbot-window {
+                width: 300px;
+                height: 400px;
+            }
+
+            .container { padding: 0 15px; }
+        }
+
+        @media (max-width: 480px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Scroll animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-animate.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">YouthFit Pro 🚀</div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#approach">Our Approach</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#why-choose">Why Choose Us</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1><strong>6-8 Weeks Intense Summer Development Program</strong></h1>
+                <p class="subtitle"><strong>Recreational development through fitness activities, chess strategy, coding basics, and nutrition education</strong></p>
+
+                <div class="summer-program-details">
+                    <div class="program-highlight">
+                        <h3>🌟 Summer Development Intensive</h3>
+                        <p><strong>6-8 Week Structured Program</strong></p>
+                        <ul class="program-features">
+                            <li>✅ <strong>Daily 90-minute sessions</strong> focused on holistic development</li>
+                            <li>✅ <strong>Multi-activity approach:</strong> Physical fitness, mental strategy, tech basics</li>
+                            <li>✅ <strong>Recreational and educational focus</strong> - no competitive sports training</li>
+                            <li>✅ <strong>Small group dynamics</strong> with maximum 8 participants per session</li>
+                            <li>✅ <strong>Progress tracking and family updates</strong> throughout the program</li>
+                            <li>✅ <strong>End-of-program celebration</strong> with certificates and achievements</li>
+                        </ul>
+                        <div class="program-pricing">
+                            <p><strong>Summer Program:</strong></p>
+                            <p><em>Includes all activities, materials, and weekly progress reports to keep you connected every step of the way</em></p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#services" class="cta-button">Join Summer Program 2025 🚀</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <h2>Our Services</h2>
+                <p>Evidence-based programs designed to build confidence, skills, and healthy habits that last a lifetime</p>
+            </div>
+
+            <div class="services-grid">
+
+                <div class="service-card scroll-animate">
+                    <div class="service-header">
+                        <div class="service-title">
+                            <h3>🏋️ Private Youth Fitness & Recreational Development</h3>
+                            <div class="age-group">All Ages</div>
+                        </div>
+                        <a href="/book" class="book-button">Book Now</a>
+                    </div>
+
+                    <div class="service-content">
+                        <div class="service-details">
+                            <h5>What Makes This Program Special:</h5>
+                            <ul>
+                                <li>Recreational fitness activities focused on personal development</li>
+                                <li>Age-appropriate movement education and basic fitness concepts</li>
+                                <li>Functional movement patterns for everyday activities</li>
+                                <li>Confidence-building through personal achievement milestones</li>
+                                <li>Home or recreational space sessions for comfort and convenience</li>
+                                <li><strong>Note: This is recreational development, not professional sports coaching</strong></li>
+                            </ul>
+                        </div>
+
+                        <div class="service-details">
+                            <h5>Session Structure (60 minutes):</h5>
+                            <ul>
+                                <li><strong>Warm-up (10 mins):</strong> Fun movement activities and mobility</li>
+                                <li><strong>Skill Development (20 mins):</strong> Basic movement skills and coordination</li>
+                                <li><strong>Fitness Activities (25 mins):</strong> Age-appropriate recreational exercises</li>
+                                <li><strong>Cool-down (5 mins):</strong> Relaxation and reflection time</li>
+                            </ul>
+                        </div>
+
+                        <div class="benefits">
+                            <h4>Developmental Benefits:</h4>
+                            <ul>
+                                <li>Improved physical confidence and body awareness</li>
+                                <li>Builds self-discipline and personal goal-setting skills</li>
+                                <li>Encourages active lifestyle habits from an early age</li>
+                                <li>Supports better sleep quality and mood regulation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="price">💰 £30/session or £160 for 6 sessions (Save £20!)</div>
+                </div>
+
+                <div class="service-card scroll-animate">
+                    <div class="service-header">
+                        <div class="service-title">
+                            <h3>♟️ Chess for Focus & Strategy</h3>
+                            <div class="age-group">Ages 6-13</div>
+                        </div>
+                        <a href="/book" class="book-button">Book Now</a>
+                    </div>
+
+                    <div class="service-content">
+                        <div class="service-details">
+                            <h5>Comprehensive Chess Development:</h5>
+                            <ul>
+                                <li>Beginner to advanced strategic thinking</li>
+                                <li>Pattern recognition and memory training</li>
+                                <li>Problem-solving under pressure techniques</li>
+                                <li>Sportsmanship and emotional regulation</li>
+                                <li>Tournament preparation and confidence building</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-details">
+                            <h5>Session Focus (45 minutes):</h5>
+                            <ul>
+                                <li><strong>Opening Principles:</strong> Solid foundation strategies</li>
+                                <li><strong>Tactical Puzzles:</strong> Sharpen calculation skills</li>
+                                <li><strong>Endgame Mastery:</strong> Finish games with confidence</li>
+                                <li><strong>Live Games:</strong> Apply learning in real scenarios</li>
+                            </ul>
+                        </div>
+
+                        <div class="benefits">
+                            <h4>Academic & Life Benefits:</h4>
+                            <ul>
+                                <li>73% of chess students show improved maths performance</li>
+                                <li>Enhanced concentration span by 40% on average</li>
+                                <li>Better decision-making skills in daily life</li>
+                                <li>Increased patience and emotional control</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="price">💰 £20/session</div>
+                </div>
+
+                <div class="service-card scroll-animate">
+                    <div class="service-header">
+                        <div class="service-title">
+                            <h3>🤖 AI Coding Club</h3>
+                            <div class="age-group">All Ages</div>
+                        </div>
+                        <a href="/book" class="book-button">Book Now</a>
+                    </div>
+
+                    <div class="service-content">
+                        <ul>
+                            <li>Interactive coding foundations with visual programming</li>
+                            <li>Age-appropriate AI concepts and machine learning basics</li>
+                            <li>Creative coding challenges and game development</li>
+                            <li>Mini projects kids can proudly share with family</li>
+                            <li>Regular parent updates on progress and achievements</li>
+                        </ul>
+
+                        <div class="benefits">
+                            <h4>Future-Ready Benefits:</h4>
+                            <ul>
+                                <li>Spark genuine curiosity in technology</li>
+                                <li>Build logical thinking and problem-solving skills</li>
+                                <li>Encourage creativity through digital creation</li>
+                                <li>Prepare for high-demand career opportunities</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="price">💰 £30/session or £160 for 6 sessions</div>
+                </div>
+
+                <div class="service-card scroll-animate">
+                    <div class="service-header">
+                        <div class="service-title">
+                            <h3>🥗 Nutrition & Meal Planning</h3>
+                            <div class="age-group">All Ages</div>
+                        </div>
+                        <a href="/book" class="book-button">Book Now</a>
+                    </div>
+
+                    <div class="service-content">
+                        <ul>
+                            <li>Customised weekly meal and snack plans</li>
+                            <li>Healthy shopping guides with budget-friendly options</li>
+                            <li>Simple, kid-friendly recipes they'll actually enjoy</li>
+                            <li>Monthly virtual check-ins to adjust and optimise plans</li>
+                        </ul>
+
+                        <div class="benefits">
+                            <h4>Long-term Health Benefits:</h4>
+                            <ul>
+                                <li>Encourage healthy eating habits early in life</li>
+                                <li>Reduce sugar intake and processed food dependency</li>
+                                <li>Support active lifestyles with proper nutrition</li>
+                                <li>Build positive relationship with food</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="price">💰 £20/week or £70/month</div>
+                </div>
+
+                <div class="service-card scroll-animate">
+                    <div class="service-header">
+                        <div class="service-title">
+                            <h3>👨‍👩‍👧‍👦 Family Fitness Sessions</h3>
+                            <div class="age-group">All Ages Welcome</div>
+                        </div>
+                        <a href="/book" class="book-button">Book Now</a>
+                    </div>
+
+                    <div class="service-content">
+                        <ul>
+                            <li>60-minute inclusive family workout sessions</li>
+                            <li>Fun, movement-based games and team challenges</li>
+                            <li>Adaptable circuits for all fitness levels</li>
+                            <li>Family health and wellness education</li>
+                        </ul>
+
+                        <div class="benefits">
+                            <h4>Family Bonding Benefits:</h4>
+                            <ul>
+                                <li>Strengthen family relationships through shared activity</li>
+                                <li>Build healthy habits together as a unit</li>
+                                <li>Create lasting memories and traditions</li>
+                                <li>Model positive lifestyle choices for children</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="price">💰 £45 per session</div>
+                </div>
+
+                <div class="service-card scroll-animate">
+                    <div class="service-header">
+                        <div class="service-title">
+                            <h3>👥 Small Group Training Sessions</h3>
+                            <div class="age-group">Up to 5 Kids</div>
+                        </div>
+                        <a href="/book" class="book-button">Book Now</a>
+                    </div>
+
+                    <div class="service-content">
+                        <ul>
+                            <li>Small group dynamics with maximum 5 children</li>
+                            <li>Fun, team-based workouts and competitions</li>
+                            <li>Strength circuits designed for group motivation</li>
+                            <li>Agility games and cooperative challenges</li>
+                            <li>Group progress reports and celebration milestones</li>
+                        </ul>
+
+                        <div class="benefits">
+                            <h4>Social Development Benefits:</h4>
+                            <ul>
+                                <li>Peer motivation and accountability</li>
+                                <li>Cost-effective fitness solution per child</li>
+                                <li>Build teamwork and leadership skills</li>
+                                <li>Develop healthy competitive spirit</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="price">💰 £15 per child per session</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="approach" id="approach">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <h2>Research-Based Developmental Approach</h2>
+                <p>Backed by educational research and proven methodologies that support healthy development</p>
+            </div>
+
+            <div class="approach-grid">
+                <div class="approach-card scroll-animate">
+                    <span class="approach-icon">💪</span>
+                    <div class="approach-stat">Physical</div>
+                    <h3 class="approach-title">Enhanced Physical Development</h3>
+                    <p>Children show measurable improvements in strength, coordination, and overall fitness through structured recreational activities and movement education.</p>
+                    <div class="approach-quote">
+                        "Kids who engage in regular structured recreational activities show better academic performance compared to sedentary peers." - Journal of School Health
+                    </div>
+                </div>
+
+                <div class="approach-card scroll-animate">
+                    <span class="approach-icon">🧠</span>
+                    <div class="approach-stat">Mental</div>
+                    <h3 class="approach-title">Cognitive Function Development</h3>
+                    <p>Chess and basic coding activities help develop problem-solving abilities, strategic thinking, and improved concentration skills in young learners.</p>
+                    <div class="approach-quote">
+                        "Chess education shows positive correlation with higher reasoning abilities and improved mathematical skills in students." - Educational Psychology Research
+                    </div>
+                </div>
+
+                <div class="approach-card scroll-animate">
+                    <span class="approach-icon">🥗</span>
+                    <div class="approach-stat">Nutrition</div>
+                    <h3 class="approach-title">Healthy Lifestyle Habits</h3>
+                    <p>Families following structured nutrition education report better eating patterns, increased vegetable consumption, and improved energy levels throughout the day.</p>
+                    <div class="approach-quote">
+                        "Children with nutrition guidance consume more fruits and vegetables and show better energy levels throughout the day." - Pediatric Nutrition Study
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="why-choose">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Makes Us Different?</h2>
+                <p>Safe, professional, and focused on recreational development - not competitive sports</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial scroll-animate">
+                    <div class="difference-icon">🛡️</div>
+                    <h3 class="difference-title">Enhanced DBS Checked</h3>
+                    <p class="testimonial-text">All our development instructors hold Enhanced DBS (Disclosure and Barring Service) clearances, ensuring the highest level of child protection and safety standards.</p>
+                </div>
+
+                <div class="testimonial scroll-animate">
+                    <div class="difference-icon">🎯</div>
+                    <h3 class="difference-title">No Sports or Competitive Coaching</h3>
+                    <p class="testimonial-text">We focus purely on recreational development and educational activities. No professional sports training or competitive coaching - just fun, skill-building, and personal growth.</p>
+                </div>
+
+                <div class="testimonial scroll-animate">
+                    <div class="difference-icon">🎓</div>
+                    <h3 class="difference-title">Educational Development Focus</h3>
+                    <p class="testimonial-text">Every activity is designed for learning and personal development. From chess strategy to basic coding concepts, we prioritise education over competition.</p>
+                </div>
+
+                <div class="testimonial scroll-animate">
+                    <div class="difference-icon">🏠</div>
+                    <h3 class="difference-title">Convenient Home-Based Sessions</h3>
+                    <p class="testimonial-text">All sessions can be conducted at your home or local recreational spaces, providing a comfortable and familiar environment for your child's development journey.</p>
+                </div>
+
+                <div class="testimonial scroll-animate">
+                    <div class="difference-icon">📚</div>
+                    <h3 class="difference-title">Holistic Development Approach</h3>
+                    <p class="testimonial-text">We combine physical activity, mental challenges, technology education, and nutrition awareness to support well-rounded personal development in young people.</p>
+                </div>
+
+                <div class="testimonial scroll-animate">
+                    <div class="difference-icon">👨‍👩‍👧‍👦</div>
+                    <h3 class="difference-title">Family-Centered Philosophy</h3>
+                    <p class="testimonial-text">We believe in involving families in the development process, offering family sessions and regular progress updates to ensure everyone is part of the journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="about" style="background: white; color: #2d3748;">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: #2d3748;">About Us</h2>
+                <p style="color: #4a5568;">Dedicated to safe, recreational development programs for young people</p>
+            </div>
+
+            <div class="about-content" style="max-width: 800px; margin: 0 auto; text-align: left;">
+                <div class="about-section" style="background: #f8fafc; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                    <h3 style="color: #2d3748; margin-bottom: 1rem;">Our Mission</h3>
+                    <p style="color: #4a5568; line-height: 1.8; margin-bottom: 1rem;">
+                        We are committed to providing safe, engaging, and educational recreational activities that support the personal development of young people. Our approach focuses on building confidence, developing life skills, and encouraging healthy habits through fun, non-competitive experiences.
+                    </p>
+                </div>
+
+                <div class="about-section" style="background: #f8fafc; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                    <h3 style="color: #2d3748; margin-bottom: 1rem;">What We Do</h3>
+                    <p style="color: #4a5568; line-height: 1.8; margin-bottom: 1rem;">
+                        We offer recreational fitness activities, chess education, basic coding introduction, and nutrition awareness programs. All activities are designed for personal development and educational purposes - we do not provide professional sports coaching or competitive training.
+                    </p>
+                </div>
+
+                <div class="about-section" style="background: #f8fafc; padding: 2rem; border-radius: 15px;">
+                    <h3 style="color: #2d3748; margin-bottom: 1rem;">Our Commitment</h3>
+                    <p style="color: #4a5568; line-height: 1.8; margin-bottom: 1rem;">
+                        Safety and educational value are our top priorities. All our development facilitators are Enhanced DBS checked and trained in working with young people in recreational and educational settings. We maintain clear boundaries around recreational development versus professional sports coaching.
+                        This platform is proudly powered by Gen3block, bringing innovative tools and technology to help drive growth, learning, and positive impact within our community.
+                    </p>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about our programs</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item scroll-animate">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        How do I know which program is right for my child?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Our AI assistant can help recommend the best program based on your child's age, interests, and goals. We also offer free consultations to discuss your child's needs and create a personalised development plan.
+                    </div>
+                </div>
+
+                <div class="faq-item scroll-animate">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Are the sessions safe for young children?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Absolutely! All our programs are age-appropriate and safety-focused. We use bodyweight exercises, light resistance, and proper form techniques. Our coaches are trained in youth development and first aid certified.
+                    </div>
+                </div>
+
+                <div class="faq-item scroll-animate">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        What if my child has never done chess or coding before?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Perfect! We love working with complete beginners. Our programs are designed to start from the very basics and build up gradually. Many of our most successful students started with zero experience.
+                    </div>
+                </div>
+
+                <div class="faq-item scroll-animate">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Can I cancel or reschedule sessions?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Yes! We understand family schedules can be unpredictable. We offer flexible rescheduling with 24-hour notice and reasonable cancellation policies for our session packages.
+                    </div>
+                </div>
+
+                <div class="faq-item scroll-animate">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        How do I track my child's progress?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        We provide regular progress reports, photo/video updates where appropriate, and maintain detailed records of achievements and milestones. Parents receive monthly summaries of their child's development.
+                    </div>
+                </div>
+
+                <div class="faq-item scroll-animate">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Do you offer discounts for multiple children or services?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Yes! We offer family discounts for multiple children and bundle deals when combining different services. Contact us to discuss the best package for your family's needs and budget.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>YouthFit Pro</h4>
+                    <p>Dedicated to safe recreational development programs that build confidence, skills, and healthy habits through educational activities - not professional sports coaching.</p>
+                    <p><strong>Phone:</strong> +44 (0) 20 1234 5678</p>
+                    <p><strong>Email:</strong> hello@youthfitpro.co.uk</p>
+                    <p><em>All facilitators are Enhanced DBS checked</em></p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="#services">Recreational Fitness Development</a></li>
+                        <li><a href="#services">Chess Strategy Education</a></li>
+                        <li><a href="#services">Basic Coding Introduction</a></li>
+                        <li><a href="#services">Nutrition Awareness</a></li>
+                        <li><a href="#services">Family Activity Sessions</a></li>
+                        <li><a href="#services">Small Group Development</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#approach">Our Approach</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#book">Book Session</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Service Areas</h4>
+                    <p>London & Greater London</p>
+                    <p>Home visits and estate field sessions available</p>
+                    <p><strong>Hours:</strong><br>
+                    Mon-Fri: 3:30pm - 7:00pm<br>
+                    Weekends: 9:00am - 6:00pm</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 YouthFit Pro. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chatbot -->
+    <div class="chatbot-container">
+        <button class="chatbot-toggle" onclick="toggleChat()">🤖</button>
+        <div class="chatbot-window" id="chatWindow">
+            <div class="chatbot-header">
+                🤖 AI Assistant - YouthFit Pro
+            </div>
+            <div class="chatbot-messages" id="chatMessages">
+                <div class="message ai-message">
+                    Hi! I'm your AI assistant! 🌟 I can help you choose the perfect service for your child, answer questions about our programs, provide pricing info, or give you fitness tips. What would you like to know?
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatInput" placeholder="Ask me anything..." onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chatbot functionality
+        let chatOpen = false;
+
+        function toggleChat() {
+            const window = document.getElementById('chatWindow');
+            chatOpen = !chatOpen;
+            window.style.display = chatOpen ? 'flex' : 'none';
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const messages = document.getElementById('chatMessages');
+
+            if (input.value.trim() === '') return;
+
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user-message';
+            userMessage.textContent = input.value;
+            messages.appendChild(userMessage);
+
+            const aiResponse = generateAIResponse(input.value.toLowerCase());
+
+            setTimeout(() => {
+                const aiMessage = document.createElement('div');
+                aiMessage.className = 'message ai-message';
+                aiMessage.textContent = aiResponse;
+                messages.appendChild(aiMessage);
+                messages.scrollTop = messages.scrollHeight;
+            }, 800);
+
+            input.value = '';
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function generateAIResponse(message) {
+            const responses = {
+                'fitness': "🏋️ Our private fitness coaching is perfect for building strength and confidence! £30 per session with personalised plans. Available for all ages with home or field sessions. Want to know more about what's included?",
+                'chess': "♟️ Chess coaching is excellent for developing focus and strategic thinking! £20 per session for ages 6-13. Studies show chess players have 13% higher IQ scores. Perfect for improving academic performance!",
+                'coding': "🤖 Our AI Coding Club teaches future-ready skills! £30 per session covering coding basics and AI concepts. Kids create projects they can share with family. Great for logical thinking development!",
+                'nutrition': "🥗 Our nutrition service provides customised meal plans and healthy recipes! £20/week or £70/month with virtual check-ins. Families report 60% better eating habits!",
+                'family': "👨‍👩‍👧‍👦 Family fitness sessions are amazing for bonding! £45 per session for the whole family. Great way to build healthy habits together while having fun!",
+                'group': "👥 Small group training builds teamwork and motivation! £15 per child with up to 5 kids. Perfect for social development and making fitness affordable!",
+                'price': "💰 Our prices: Private Fitness £30, Chess £20, Coding £30, Nutrition £20/week, Family £45, Group £15/child. Package deals available for better value!",
+                'age': "We welcome all ages! Chess is specifically for 6-13 year olds, but all other services are designed for any age group. What age is your child?",
+                'book': "📅 Ready to book? You can choose any service and we'll arrange a convenient time. Would you like to start with a single session or explore our package deals?",
+                'benefit': "✨ Benefits include: 85% improved fitness, 73% better cognitive function, increased confidence, better academic performance, and healthier family habits!",
+                'safe': "🛡️ Absolutely safe! All programs are age-appropriate with certified coaches trained in youth development and first aid. We prioritise proper form and safety above all."
+            };
+
+            for (let keyword in responses) {
+                if (message.includes(keyword)) {
+                    return responses[keyword];
+                }
+            }
+
+            const defaultResponses = [
+                "That's a great question! 🌟 I can help with service recommendations, pricing info, age requirements, or booking. What specifically interests you?",
+                "I'd love to help! 🚀 Are you interested in fitness, chess, coding, nutrition, or family activities? Each program has unique benefits!",
+                "Excellent! 💪 All our programs build confidence and healthy habits. Would you like to know about specific services or general information?",
+                "Thanks for asking! 🎯 We have 6 amazing services designed for different interests and goals. What would you like to explore first?"
+            ];
+
+            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+        }
+
+        // FAQ functionality
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.faq-icon');
+
+            // Close all other FAQs
+            document.querySelectorAll('.faq-answer').forEach(ans => {
+                if (ans !== answer) {
+                    ans.classList.remove('active');
+                    ans.previousElementSibling.querySelector('.faq-icon').classList.remove('active');
+                }
+            });
+
+            // Toggle current FAQ
+            answer.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle (basic functionality)
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+</body>
+</html>
