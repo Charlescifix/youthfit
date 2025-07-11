@@ -11,18 +11,17 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Important: use .parent.parent to get /app
+# This points to the folder where main.py lives
 BASE_DIR = Path(__file__).resolve().parent
 
-# Serve static files
+# Serve static files from ./static relative to main.py
 app.mount(
     "/static",
     StaticFiles(directory=BASE_DIR / "static"),
     name="static"
 )
 
-# Templates
+# Templates also relative to main.py
 templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
 
-# Routes
 app.include_router(routes.router)
